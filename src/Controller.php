@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use APIResponseTrait, HelpersTrait, SearchTrait;
 
-    protected Model $model;
+    protected $model;
 
     /**
      * Regras para a validação na função create (POST)
