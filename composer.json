@@ -1,0 +1,22 @@
+{
+    "name": "paulo123araujo/controller-base-lumen",
+    "description": "Controller genérico para os CRUDs do Lumen",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Paulo Araújo",
+            "email": "paulofelipe_jau7654@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4",
+        "laravel/lumen-framework": "^7.0"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "ControllerBase\\": "src/"
+        }
+    }
+}
