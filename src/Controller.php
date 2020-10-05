@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class Controller extends BaseController
+abstract class Controller extends BaseController
 {
     use APIResponseTrait, HelpersTrait, SearchTrait;
 
@@ -16,30 +16,38 @@ class Controller extends BaseController
 
     /**
      * Regras para a validação na função create (POST)
-     * 
+     *
      * @var array
      */
-    protected array $createRules = [];
+    protected $createRules;
 
     /**
      * Regras para a validação na função update (PUT)
-     * 
+     *
      * @var array
      */
-    protected array $updateRules = [];
+    protected $updateRules;
 
     /**
      * Filtros para a listagem de objetos
-     * 
+     *
      * @var array
      */
-    protected array $filters = [];
+    protected $filters;
 
     /**
      * Define as regras de updateRules como as mesmas de createRules
+     *
+     * @param string $model
+     * @param array $createRules
+     * @param array $filters
      */
-    public function __construct()
+    public function __construct(string $model, array $createRules, array $filters)
     {
+        $this->model = $model;
+        $this->createRules = $createRules;
+        $this->filters = $filters;
+
         $createWithoutRequired = [];
         foreach ($this->createRules as $field => $value) {
             $value = str_replace(['|required|'], '|', $value);
